@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cliente: {{ cliente.nombre }}</title>
+</head>
+<body>
+    <h1>Editar Cliente: {{ cliente.nombre }} {{ cliente.apellido }}</h1>
+    {% if error %} <p style="color: red;">{{ error }}</p> {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label><input type="text" id="nombre" name="nombre" value="{{ cliente.nombre }}" required><br>
+        <label for="apellido">Apellido:</label><input type="text" id="apellido" name="apellido" value="{{ cliente.apellido }}" required><br>
+        <label for="telefono">Teléfono:</label><input type="text" id="telefono" name="telefono" value="{{ cliente.telefono }}"><br>
+        <label for="correo">Correo:</label><input type="email" id="correo" name="correo" value="{{ cliente.correo }}" required><br>
+        <label for="extras_referencias">Extras/Referencias:</label><textarea id="extras_referencias" name="extras_referencias" rows="4">{{ cliente.extras_referencias }}</textarea><br>
+        <button type="submit">Actualizar Cliente</button>
+    </form>
+    <p><a href="{% url 'listar_clientes' %}">Volver al listado</a></p>
+</body>
+</html>
